@@ -78,6 +78,7 @@ export default {
         } else {
           //保存token
           window.sessionStorage.setItem("token", res.data.token);
+          window.sessionStorage.setItem('name',res.data.username)
           this.$router.push("/home");
         }
       });
@@ -88,7 +89,7 @@ export default {
 
 <style lang="less" scoped>
 .login_container {
-  background-color: #666666;
+  background-color: rgb(51, 55, 68);
   height: 100%;
   .login_box {
     width: 500px;

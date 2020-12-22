@@ -1,58 +1,70 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="container">
+    <img class="ava" :src="svgOptions.imgPath" />
+    <div style="width: 200px; height: 200px">
+      <svg viewBox="0 0 100 100">
+        <path
+          d="M 50 50 m -40 0 a 40 40 0 1 0 80 0  a 40 40 0 1 0 -80 0"
+          fill="none"
+          :stroke="svgOptions.stroke"
+          :stroke-width="svgOptions.width"
+        >
+          >
+        </path>
+        <path
+          d="M 50 50 m -40 0 a 40 40 0 1 0 80 0  a 40 40 0 1 0 -80 0"
+          fill="none"
+          :stroke="svgOptions.pathOptions.stroke"
+          stroke-linecap="round"
+          class="my-svg-path"
+          :transform="svgOptions.pathOptions.progress"
+          :stroke-width="svgOptions.pathOptions.width"
+        ></path>
+      </svg>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  data() {
+    return {
+      svgOptions: {
+        imgPath:
+          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=251289958,1860898046&fm=26&gp=0.jpg",
+        width: 5,
+        stroke: "#e5e9f2",
+        pathOptions: {
+          width: 5,
+          stroke: "#20a0ff",
+          progress: "rotate(90,50,50)",
+        },
+      },
+    };
+  },
+  methods: {},
+  mounted() {},
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style>
+.container {
+  position: relative;
+  width: 200px;
+  height: 200px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.my-svg-path {
+  stroke-dasharray: 252.2px, 252.2px;
+  stroke-dashoffset: 22px;
+  transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease 0s;
+  transform: rotateZ(90deg);
+  transform-origin: 50% 50%;
+  transition: all 0.3s ease;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.ava {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
 }
 </style>
