@@ -9,6 +9,8 @@ import Rights from '../components/power/Rights.vue'
 import Roles from '../components/power/Roles.vue'
 import Hello from '../components/HelloWorld.vue'
 
+//const Good = ()=>import("@/components/goods/goods.vue")
+const Good  = () => import(/* webpackChunkName: 'ImportFuncDemo' */ '@/components/goods/goods.vue')
 Vue.use(VueRouter)
 
 
@@ -53,6 +55,16 @@ const originalPush = VueRouter.prototype.push
         {
           path:'/roles',
           component:Roles
+        },
+        {
+            path:'/goods',
+            //component:Good
+            component: resolve=>(require(["@/components/goods/goods"],resolve))
+        },
+        {
+            path:'/params',
+            //component:Good
+            component: resolve=>(require(["@/components/goods/template"],resolve))
         }
       ]
     }
@@ -63,7 +75,7 @@ const router = new VueRouter({
 })
 
 //路由导航守卫
-router.beforeEach((to,from,next)=>{
+/* router.beforeEach((to,from,next)=>{
   if(to.path==="/login") return next();
  const token = window.sessionStorage.getItem('token');
  if(!token){
@@ -71,6 +83,6 @@ router.beforeEach((to,from,next)=>{
  }else{
    next()
  }
-})
+}) */
 
 export default router
